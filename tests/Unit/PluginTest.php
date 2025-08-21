@@ -73,7 +73,7 @@ class PluginTest extends TestCase
     public function test_plugin_enabled_with_closure()
     {
         $plugin = FilamentNavigationSearchPlugin::make()
-            ->enabled(fn() => false);
+            ->enabled(fn () => false);
 
         $this->assertFalse($plugin->isEnabled());
     }

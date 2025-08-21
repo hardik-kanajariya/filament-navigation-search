@@ -9,11 +9,17 @@ use Filament\Panel;
 class FilamentNavigationSearchPlugin implements Plugin
 {
     protected string $placeholder = 'Search navigation...';
+
     protected string $position = 'top';
+
     protected bool $showResultsCount = true;
+
     protected int $searchDelay = 200;
+
     protected int $minSearchLength = 1;
+
     protected bool $highlightMatches = true;
+
     protected bool $enabled = true;
 
     public function getId(): string
@@ -32,8 +38,8 @@ class FilamentNavigationSearchPlugin implements Plugin
             return;
         }
 
-        $renderHook = $this->position === 'bottom' 
-            ? 'panels::sidebar.end' 
+        $renderHook = $this->position === 'bottom'
+            ? 'panels::sidebar.end'
             : 'panels::sidebar.start';
 
         $panel->renderHook($renderHook, fn () => view('filament-navigation-search::navigation-search', [
@@ -53,6 +59,7 @@ class FilamentNavigationSearchPlugin implements Plugin
     public function placeholder(string $placeholder): static
     {
         $this->placeholder = $placeholder;
+
         return $this;
     }
 
@@ -63,36 +70,42 @@ class FilamentNavigationSearchPlugin implements Plugin
         }
 
         $this->position = $position;
+
         return $this;
     }
 
     public function showResultsCount(bool $show = true): static
     {
         $this->showResultsCount = $show;
+
         return $this;
     }
 
     public function searchDelay(int $delay): static
     {
         $this->searchDelay = max(0, $delay);
+
         return $this;
     }
 
     public function minSearchLength(int $length): static
     {
         $this->minSearchLength = max(1, $length);
+
         return $this;
     }
 
     public function highlightMatches(bool $highlight = true): static
     {
         $this->highlightMatches = $highlight;
+
         return $this;
     }
 
     public function enabled(bool|Closure $condition = true): static
     {
         $this->enabled = $condition instanceof Closure ? $condition() : $condition;
+
         return $this;
     }
 

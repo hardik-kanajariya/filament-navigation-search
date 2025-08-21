@@ -3,11 +3,10 @@
 
 /**
  * Simple test runner for Filament Navigation Search Plugin
- * 
+ *
  * This script runs all tests and quality checks for the plugin.
  * Run this from the plugin directory: php test-runner.php
  */
-
 echo "🚀 Filament Navigation Search Plugin - Test Runner\n";
 echo "================================================\n\n";
 
@@ -25,11 +24,12 @@ function runCommand($description, $command, $requireSuccess = true)
     $output = [];
     $returnVar = 0;
 
-    exec($command . ' 2>&1', $output, $returnVar);
+    exec($command.' 2>&1', $output, $returnVar);
 
     if ($returnVar === 0) {
         echo "   ✅ PASSED\n\n";
         $passed++;
+
         return true;
     } else {
         echo "   ❌ FAILED\n";
@@ -50,7 +50,7 @@ function runCommand($description, $command, $requireSuccess = true)
 }
 
 // Check if we're in the right directory
-if (!file_exists('composer.json')) {
+if (! file_exists('composer.json')) {
     echo "❌ Error: composer.json not found. Please run this script from the plugin directory.\n";
     exit(1);
 }
@@ -61,27 +61,27 @@ if ($composer['name'] !== 'hkdevs/filament-navigation-search') {
     exit(1);
 }
 
-echo "📂 Working directory: " . getcwd() . "\n";
+echo '📂 Working directory: '.getcwd()."\n";
 echo "📦 Package: {$composer['name']}\n";
 echo "📝 Description: {$composer['description']}\n\n";
 
 // Install dependencies
 runCommand(
-    "Installing Composer dependencies",
-    "composer install --no-interaction --prefer-dist --optimize-autoloader"
+    'Installing Composer dependencies',
+    'composer install --no-interaction --prefer-dist --optimize-autoloader'
 );
 
 // Run PHPUnit tests
 runCommand(
-    "Running PHPUnit tests",
-    "vendor/bin/phpunit --testdox --colors=always"
+    'Running PHPUnit tests',
+    'vendor/bin/phpunit --testdox --colors=always'
 );
 
 // Check if Pint exists and run code style check
 if (file_exists('vendor/bin/pint')) {
     runCommand(
-        "Checking code style with Laravel Pint",
-        "vendor/bin/pint --test",
+        'Checking code style with Laravel Pint',
+        'vendor/bin/pint --test',
         false // Don't stop on failure
     );
 } else {
@@ -91,8 +91,8 @@ if (file_exists('vendor/bin/pint')) {
 // Check if PHPStan exists and run static analysis
 if (file_exists('vendor/bin/phpstan')) {
     runCommand(
-        "Running static analysis with PHPStan",
-        "vendor/bin/phpstan analyse --no-progress",
+        'Running static analysis with PHPStan',
+        'vendor/bin/phpstan analyse --no-progress',
         false // Don't stop on failure
     );
 } else {

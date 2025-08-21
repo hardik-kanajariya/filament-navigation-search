@@ -51,7 +51,7 @@ class ExampleAdminPanelProvider extends PanelProvider
                 NavigationItem::make('Dashboard')
                     ->url('/admin')
                     ->icon('heroicon-o-home')
-                    ->isActiveWhen(fn() => request()->is('admin')),
+                    ->isActiveWhen(fn () => request()->is('admin')),
             ])
             ->navigationGroups([
                 // Content Management
